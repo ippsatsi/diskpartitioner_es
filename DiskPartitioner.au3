@@ -766,10 +766,16 @@ Func _GetPartInfoExtended($hPrDiskPart, $sDiskNo)
 ;~ 			MsgBox(0, "hid", StringMid($sPartList,$iPosDataStart))
 			$asPartitions[$i][12] = StringStripWS(StringMid($sPartList, $iPosDataStart, 4), 3)
 ;~ 			MsgBox(0, "hid", $asPartitions[$i][12])
-			$iPosDataStart = StringInStr($sPartList, "Active") + 16  ;version: 0.4.1.0
+
 ;~ 			MsgBox(0, "act", StringMid($sPartList,$iPosDataStart))
-			$asPartitions[$i][13] = StringStripWS(StringMid($sPartList, $iPosDataStart, 4), 3)
-;~ 			MsgBox(0, "act", $asPartitions[$i][13])
+;~ 			En UEFI solo la particion EFI es la activa
+;~ 			si es disco UEFI no buscamos cual es activa
+			If Not StringInStr($sPartList, "Necesaria") Then
+				$iPosDataStart = StringInStr($sPartList, "Active") + 16  ;version: 0.4.1.0
+				$asPartitions[$i][13] = StringStripWS(StringMid($sPartList, $iPosDataStart, 4), 3)
+			Else
+				$asPartitions[$i][13] = ''
+			EndIf
 
 			$iPosDataStart = StringInStr($sPartList, "----")
 			If $iPosDataStart <> 0 Then
