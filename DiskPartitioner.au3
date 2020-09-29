@@ -138,7 +138,10 @@ Func Cambiar_a_Ingles($string)
 	$string = StringReplace($string, "Oculta", "Hidden")
 	$string = StringReplace($string, "Activa", "Active")
 	$string = StringReplace($string, "S¡", "Si")
-
+	$string = StringReplace($string, "¡", "í")
+	$string = StringReplace($string, "£", "ú")
+	$string = StringReplace($string, "¢", "ó")
+	$string = StringReplace($string, "¤", "ñ")
 	Return $string
 EndFunc
 
@@ -469,18 +472,17 @@ Func _GetDiskInfoBasic($hPrDiskPart)
 ;~ 			;;MsgBox(0, "33", $asDiskList[$i])
 ;~ 		Next
 
-;~ 		_ArrayDelete($asDiskList, 0)
-;~ 		_ArrayDelete($asDiskList, 0)	; Repeat - $asDiskList[1] is now $asDiskList[0]
-;~ 		;_ArrayDisplay($asDiskList, "")
-		;;;Dim $asDisks[UBound($asDiskList)][21]
 		Dim $asDisks[UBound($asDiskList)][21]
 		For $i = 0 to UBound($asDiskList) - 1
+;~ 			dinamico = d, no dinamico = n, gpt = g, mbr = m
+;			detectamos dinamico y no dinamico
 			$asDiskList[$i] = StringReplace($asDiskList[$i],"B       ","B    n  ")
-;~ 			MsgBox(0,"33", StringReplace($asDiskList[$i]," ","_"))
+			$asDiskList[$i] = StringReplace($asDiskList[$i],"B   *  ","B   d  ")
+;			detectamos gpt y mbr
 			$asDiskList[$i] = StringReplace($asDiskList[$i],"n   *","n   g")
-			$asDiskList[$i] = StringReplace($asDiskList[$i],"B   *","A   d")
-;~ 			$asDiskList[$i] = StringReplace($asDiskList[$i],"d   *","d   g")
-;~ 			$asDiskList[$i] = StringReplace($asDiskList[$i],"d    ","d1234")
+			$asDiskList[$i] = StringReplace($asDiskList[$i],"d   *","d   g")
+			$asDiskList[$i] = StringReplace($asDiskList[$i],"n    ","n   m")
+			$asDiskList[$i] = StringReplace($asDiskList[$i],"d    ","d   m")
 			$asDiskBasicInfo = StringSplit($asDiskList[$i], "  ", 3)
 ;~ 			_ArrayDisplay( $asDiskBasicInfo, "asDisksxxx")
 			$l = 0

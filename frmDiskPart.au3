@@ -3,7 +3,7 @@ Func CreateForm_frmDiskPart(ByRef $afrmNew)
 	Dim $afrmNew[27][2]
 
 	$afrmNew[0][0] = "$frmDiskPart"
-	$afrmNew[0][1] = GUICreate("Diskpart GUI 0.9 Beta", 408, 500);, (@DesktopWidth - 405)/2, (@DesktopHeight - 457)/2)
+	$afrmNew[0][1] = GUICreate("Diskpart GUI 0.902 Beta", 408, 500);, (@DesktopWidth - 405)/2, (@DesktopHeight - 457)/2)
 
 	Local $iAlto_Grupo1 = 116
 	GUICtrlCreateGroup("Disco actual:", 8, $pyInicio, 391, $iAlto_Grupo1)
