@@ -3,7 +3,7 @@ Func CreateForm_frmDiskPart(ByRef $afrmNew)
 	Dim $afrmNew[27][2]
 
 	$afrmNew[0][0] = "$frmDiskPart"
-	$afrmNew[0][1] = GUICreate("Diskpart GUI 0.902 Beta", 408, 500);, (@DesktopWidth - 405)/2, (@DesktopHeight - 457)/2)
+	$afrmNew[0][1] = GUICreate("Diskpart GUI 0.903 Beta", 408, 500);, (@DesktopWidth - 405)/2, (@DesktopHeight - 457)/2)
 
 	Local $iAlto_Grupo1 = 116
 	GUICtrlCreateGroup("Disco actual:", 8, $pyInicio, 391, $iAlto_Grupo1)
@@ -416,6 +416,8 @@ Func frmDiskPart_LoadPartitions()
 				GUICtrlSetData(_GetCtrl("$lblDiskLabel", $afrmDiskPart), $asDisks[$i][6])
 				GUICtrlSetData(_GetCtrl("$lblDiskNo", $afrmDiskPart), StringMid($asDisks[$i][0], 5))
 				GUICtrlSetData(_GetCtrl("$lblDiskType", $afrmDiskPart), "Tipo: " & $asDisks[$i][8])
+				GUICtrlSetData(_GetCtrl("$lblDiskDinamic", $afrmDiskPart), "Dinamico: " & $asDisks[$i][4])
+				GUICtrlSetData(_GetCtrl("$lblDiskGPT_UEFI", $afrmDiskPart), "UEFI: " & $asDisks[$i][5])
 				GUICtrlSetData(_GetCtrl("$lblDiskSize", $afrmDiskPart), "Tamaño: " & $asDisks[$i][2])
 				GUICtrlSetData(_GetCtrl("$lblDiskFree", $afrmDiskPart), "Espacio libre: " & $asDisks[$i][3])
 

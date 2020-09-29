@@ -143,7 +143,6 @@ Func Cambiar_a_Ingles($string)
 	$string = StringReplace($string, "¢", "ó")
 	$string = StringReplace($string, "¤", "ñ")
 	$string = StringReplace($string, "din micos", "dinámicos")
-
 	Return $string
 EndFunc
 
@@ -568,14 +567,34 @@ Func _GetDiskInfoExtended($hPrDiskPart)
           ; $asDisks[$i][1]                                          ; Status
 		  ; $asDisks[$i][2]                                          ; Size
 		  ; $asDisks[$i][3]                                          ; Free
-		  ; $asDisks[$i][4]                                          ; ?? - blank
-		  ; $asDisks[$i][5]                                          ; ?? - blank
+		  ; $asDisks[$i][4]                                          ; dinamico o no (n/d)
+		  ; $asDisks[$i][5]                                          ; gpt 0 mbr (g/m)
 		  ;-----------------------------------------------------------
 			If @OSVersion <> "WIN_XP" Then ; need to test other versions before Windows 7
 				$asDisks[$i][2] = _ConvertirGBbinToGBdecimal($asDisks[$i][2])	; Convertir los GB binarios A  DECIMALES
 				$asDisks[$i][3] = _ConvertirGBbinToGBdecimal($asDisks[$i][3])	; Convertir los GB binarios A  DECIMALES
+;~ 				discos dinamico o no
+				If $asDisks[$i][4] = 'n' Then
+					$asDisks[$i][4] = "No"
+				Else
+					$asDisks[$i][4] = "Si"
+				EndIf
+;~ 				discos uefi o mbr
+				If $asDisks[$i][5] = 'g' Then
+					$asDisks[$i][5] = "Si"
+				Else
+					$asDisks[$i][5] = "No"
+				EndIf
+
 				$asDisks[$i][6] = $asDiskInfoExtended[2]	             ; Model #
 				$asDisks[$i][7] = StringMid($asDiskInfoExtended[3], 14)	 ; ID
+;~ 				si el ID es 0000... indica que el disco esta vacio, limpio despues de un clean o nuevo
+;~ 				hacemos que apareza la palabra vacio en la seccion de id, dinamico y UEFI
+				If StringMid($asDiskInfoExtended[3], 14,8) = '00000000' Then
+					$asDisks[$i][7] = "vacio"
+					$asDisks[$i][4] = "vacio"
+					$asDisks[$i][5] = "vacio"
+				EndIf
 				$asDisks[$i][8] = StringMid($asDiskInfoExtended[4], 14)	 ; Type
 				$asDisks[$i][9] = StringMid($asDiskInfoExtended[5], 10)	 ; Status - same as above
 				$asDisks[$i][10] = StringMid($asDiskInfoExtended[6], 14) ; Path

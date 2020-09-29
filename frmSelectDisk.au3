@@ -7,7 +7,7 @@ Func CreateForm_frmSelectDisk(ByRef $afrmNew, $frmParent)
 							BitOr($WS_CAPTION, $WS_SYSMENU, $WS_POPUP), -1, $frmParent)
 	GUICtrlCreateLabel("Discos Duros disponibles:", 8, 8, 180, 13)
 	$afrmNew[1][0] = "$lvwHardDisks"
-	$afrmNew[1][1] = GUICtrlCreateListView("Disco #   |Modelo|serie|Tipo|Tamaño|Espacio Libre|", 8, 28, 495, 124, _
+	$afrmNew[1][1] = GUICtrlCreateListView("Disco #   |Modelo|id|Tipo|Tamaño|Espacio Libre|", 8, 28, 495, 124, _
 					BitOR($LVS_SHOWSELALWAYS, $LVS_NOSORTHEADER, $LVS_SINGLESEL))
 					GUICtrlSendMsg(-1, $LVM_SETEXTENDEDLISTVIEWSTYLE, $LVS_EX_GRIDLINES, $LVS_EX_GRIDLINES)
 	$afrmNew[2][0] = "$cmdRefresh"
