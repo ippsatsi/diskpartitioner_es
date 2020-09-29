@@ -142,6 +142,8 @@ Func Cambiar_a_Ingles($string)
 	$string = StringReplace($string, "£", "ú")
 	$string = StringReplace($string, "¢", "ó")
 	$string = StringReplace($string, "¤", "ñ")
+	$string = StringReplace($string, "din micos", "dinámicos")
+
 	Return $string
 EndFunc
 
