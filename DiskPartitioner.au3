@@ -31,7 +31,7 @@ Opt("WinWaitDelay", 10)
 
 ; Global variable declarations
 Global $msg	; application wide message variable
-Global $DebugMode = True	; Set to TRUE to echo all communication with Diskpart.exe
+Global $DebugMode = False	; Set to TRUE to echo all communication with Diskpart.exe
 
 Global $afrmDiskPart
 Global $afrmSelectDisk
