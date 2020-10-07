@@ -1,6 +1,6 @@
 Func CreateForm_frmDiskPart(ByRef $afrmNew)
 	Local $pyInicio = 8
-	Dim $afrmNew[27][2]
+	Dim $afrmNew[28][2]
 
 	$afrmNew[0][0] = "$frmDiskPart"
 	$afrmNew[0][1] = GUICreate("Diskpart GUI 0.904 Beta", 408, 500);, (@DesktopWidth - 405)/2, (@DesktopHeight - 457)/2)
@@ -35,6 +35,8 @@ Func CreateForm_frmDiskPart(ByRef $afrmNew)
 	$afrmNew[7][1] = GUICtrlCreateButton("Cambiar Disco", 16, $pyDiscoBotones, 80, 27)  ; v 0.4.0.2
 	$afrmNew[24][0] = "$cmdDiskClean"  ;v: 0.4.1.4
 	$afrmNew[24][1] = GUICtrlCreateButton("Borrar Disco", 198,$pyDiscoBotones, 80,27) ;v: 0.4.1.4
+;~ 	$afrmNew[27][0] = "$cmdDiskDeploy"
+;~ 	$afrmNew[27][1] = GUICtrlCreateButton("Clonar", 298,$pyDiscoBotones, 80,27)
 	Local $pyParticiones = $pyInicio + $iAlto_Grupo1 + 8
 	GUICtrlCreateLabel("Particiones encontradas:", 8, $pyParticiones, 200, 13)   ;version: 0.4.1.0
 	GUICtrlCreateGroup("", 8, $pyParticiones + 11, 391, 201)
